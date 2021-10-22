@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title> - 表单验证 jQuery Validation</title>
+    <title> 用户管理控制台 </title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -24,21 +24,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>jQuery Validate 简介</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <p>jquery.validate.js 是一款优秀的jQuery表单验证插件。它具有如下特点：</p>
-                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>完整验证表单</h5>
-                    </div>
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/user/edit">
                         	<input type="hidden" id="id" name="id" value="${user.id}">

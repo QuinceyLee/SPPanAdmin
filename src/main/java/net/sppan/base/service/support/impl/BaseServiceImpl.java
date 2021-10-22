@@ -10,10 +10,10 @@ import net.sppan.base.dao.support.IBaseDao;
 import net.sppan.base.entity.support.BaseEntity;
 import net.sppan.base.service.support.IBaseService;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 
 @Transactional
 public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializable> implements IBaseService<T, ID> {
@@ -22,7 +22,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
 
     @Override
     public T find(ID id) {
-        return getBaseDao().findOne(id);
+        return getBaseDao().findById(id).get();
     }
 
     @Override	
@@ -33,12 +33,13 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     @Override
     public List<T> findList(ID[] ids) {
         List<ID> idList = Arrays.asList(ids);
-        return getBaseDao().findAll(idList);
+        return getBaseDao().findAllById(idList);
     }
 
     @Override
-    public List<T> findList(Specification<T> spec, Sort sort) {
+    public List<T> findList(Example<T> spec, Sort sort) {
         return getBaseDao().findAll(spec, sort);
+//                findAll(spec, sort);
     }
 
     @Override
@@ -52,13 +53,13 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     @Override
-    public long count(Specification<T> spec) {
+    public long count(Example<T> spec) {
         return getBaseDao().count(spec);
     }
 
     @Override
     public boolean exists(ID id) {
-        return getBaseDao().exists(id);
+        return getBaseDao().existsById(id);
     }
 
     @Override
@@ -67,7 +68,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     public void save(Iterable<T> entitys) {
-        getBaseDao().save(entitys);
+        getBaseDao().saveAll(entitys);
     }
 
     @Override
@@ -77,7 +78,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
 
     @Override
     public void delete(ID id) {
-        getBaseDao().delete(id);
+        getBaseDao().deleteById(id);
     }
 
     @Override
@@ -93,12 +94,12 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     @Override
     public void delete(T[] entitys) {
         List<T> tList = Arrays.asList(entitys);
-        getBaseDao().delete(tList);
+        getBaseDao().deleteInBatch(tList);
     }
 
     @Override
     public void delete(Iterable<T> entitys) {
-        getBaseDao().delete(entitys);
+        getBaseDao().deleteInBatch(entitys);
     }
 
     @Override
@@ -108,11 +109,11 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
 
     @Override
     public List<T> findList(Iterable<ID> ids) {
-        return getBaseDao().findAll(ids);
+        return getBaseDao().findAllById(ids);
     }
 
     @Override
-    public Page<T> findAll(Specification<T> spec, Pageable pageable) {
+    public Page<T> findAll(Example<T> spec, Pageable pageable) {
         // TODO Auto-generated method stub
         return getBaseDao().findAll(spec, pageable);
     }

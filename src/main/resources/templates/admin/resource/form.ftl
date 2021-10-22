@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title> - 表单验证 jQuery Validation</title>
+    <title> 资源管理控制台</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <link rel="shortcut icon" href="favicon.ico">
     <link href="${ctx!}/assets/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${ctx!}/assets/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="${ctx!}/assets/css/animate.css" rel="stylesheet">
@@ -21,18 +21,6 @@
 
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>jQuery Validate 简介</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <p>jquery.validate.js 是一款优秀的jQuery表单验证插件。它具有如下特点：</p>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
@@ -143,7 +131,7 @@
     <script src="${ctx!}/assets/js/plugins/layer/laydate/laydate.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-	  	
+
 	    $("#frm").validate({
     	    rules: {
     	    	name: {
@@ -191,11 +179,11 @@
    	    		   success: function(msg){
 	   	    			layer.msg(msg.message, {time: 2000},function(){
 	   						var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-	   						parent.layer.close(index); 
+	   						parent.layer.close(index);
 	   					});
    	    		   }
    	    		});
-            } 
+            }
     	});
     });
     </script>

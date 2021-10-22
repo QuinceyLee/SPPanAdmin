@@ -16,6 +16,9 @@ import javax.persistence.Table;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
 import net.sppan.base.entity.support.BaseEntity;
 
 /**
@@ -28,6 +31,8 @@ import net.sppan.base.entity.support.BaseEntity;
  */
 @Entity
 @Table(name = "tb_role")
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Role extends BaseEntity {
 
 	/**
@@ -39,7 +44,7 @@ public class Role extends BaseEntity {
 	 * 角色id
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
 
@@ -66,16 +71,16 @@ public class Role extends BaseEntity {
 	/**
 	 * 创建时间
 	 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date createTime;
 
 	/**
 	 * 更新时间
 	 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date updateTime;
 
-	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_role_resource", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "resource_id") })
 	private java.util.Set<Resource> resources;
 

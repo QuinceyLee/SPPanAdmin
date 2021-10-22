@@ -4,12 +4,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.sppan.base.dao.IResourceDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import net.sppan.base.common.Constats;
@@ -17,7 +20,6 @@ import net.sppan.base.dao.IRoleDao;
 import net.sppan.base.dao.support.IBaseDao;
 import net.sppan.base.entity.Resource;
 import net.sppan.base.entity.Role;
-import net.sppan.base.service.IResourceService;
 import net.sppan.base.service.IRoleService;
 import net.sppan.base.service.support.impl.BaseServiceImpl;
 
@@ -35,11 +37,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements I
 	@Autowired
 	private IRoleDao roleDao;
 	@Autowired
-	private IResourceService resourceService;
+	private IResourceDao iResourceDao;
 	
 	@Override
 	public IBaseDao<Role, Integer> getBaseDao() {
-		return this.roleDao;
+		return roleDao;
 	}
 
 	@Override
@@ -62,9 +64,12 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements I
 	
 	
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		Role role = find(id);
 		Assert.state(!"administrator".equals(role.getRoleKey()),"超级管理员角色不能删除");
+		roleDao.deleteRoleUserRelation(id);
+		roleDao.deleteRoleResourceRelation(id);
 		super.delete(id);
 	}
 
@@ -83,7 +88,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements I
 					continue;
 				}
 				Integer rid = Integer.parseInt(resourceIds[i]);
-				resource = resourceService.find(rid);
+				resource = iResourceDao.findById(rid).get();
 				resources.add(resource);
 			}
 		}
@@ -94,7 +99,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Integer> implements I
 	@Override
 	public Page<Role> findAllByLike(String searchText, PageRequest pageRequest) {
 		if(StringUtils.isBlank(searchText)){
-			searchText = "";
+			return roleDao.findAll(pageRequest);
 		}
 		return roleDao.findAllByNameContainingOrDescriptionContaining(searchText,searchText, pageRequest);
 	}

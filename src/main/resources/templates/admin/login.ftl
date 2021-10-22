@@ -25,6 +25,7 @@
 </head>
 
 <body class="signin">
+<div align="center" style="color:rgb(5,241,241);font-size: 80px" >智能网关管理系统</div>
     <div class="signinpanel">
         <div class="row">
             <div class="col-sm-12">
@@ -34,8 +35,8 @@
 	                </div>
                 </#if>
                 <form method="post" action="${ctx!}/admin/login" id="frm">
-                    <h4 class="no-margins">登录：</h4>
-                    <p class="m-t-md">登录到H+后台主题UI框架</p>
+                    <h4 class="no-margins" style="color:black">登录：</h4>
+                    <p class="m-t-md" style="color:black">欢迎登陆智能网关后台管理系统</p>
                     <input type="text" class="form-control uname" name="username" id="username" placeholder="用户名" />
                     <input type="password" class="form-control pword m-b" name="password" id="password"  placeholder="密码" />
                     <a href="" class="forget">忘记密码了？</a>
@@ -45,7 +46,7 @@
         </div>
         <div class="signup-footer">
             <div class="pull-left">
-                &copy; SPPan
+                &copy; 智能安全防御
             </div>
         </div>
     </div>

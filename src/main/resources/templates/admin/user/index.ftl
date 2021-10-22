@@ -46,6 +46,7 @@
 		                            	<table id="table_list"></table>
 		                            </div>
 		                        </div>
+
 		                        <!-- End Example Card View -->
 		                    </div>
 	                    </div>
@@ -78,9 +79,9 @@
         	//初始化表格,动态从服务器加载数据  
 			$("#table_list").bootstrapTable({
 			    //使用get请求到服务器获取数据  
-			    method: "POST",
+			    method: "GET",
 			    //必须设置，不然request.getParameter获取不到请求参数
-			    contentType: "application/x-www-form-urlencoded",
+			    contentType: "application/json,charset=utf-8",
 			    //获取数据的Servlet地址  
 			    url: "${ctx!}/admin/user/list",
 			    //表格显示条纹  
@@ -88,7 +89,7 @@
 			    //启动分页  
 			    pagination: true,
 			    //每页显示的记录数  
-			    pageSize: 10,
+			    pageSize: 5,
 			    //当前第几页  
 			    pageNumber: 1,
 			    //记录数可选列表  
@@ -103,6 +104,7 @@
 			    //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
 			    //设置为limit可以获取limit, offset, search, sort, order  
 			    queryParamsType: "undefined",
+                minimumCountColumns: 2,
 			    //json数据解析
 			    responseHandler: function(res) {
 			        return {
@@ -134,8 +136,8 @@
 			    },{
 			        title: "性别",
 			        field: "sex",
-			        formatter: function(value, row, index) {
-                        if (value == '0') 
+			        formatter: function(value) {
+                        if (value === 0)
                         	return '<span class="label label-warning">女</span>';
                         return '<span class="label label-primary">男</span>';
                     }
@@ -152,16 +154,16 @@
 			        title: "状态",
 			        sortable: true,
 			        field: "deleteStatus",
-                    formatter: function (value, row, index) {
-                        if (value == '0') 
+                    formatter: function (value) {
+                        if (value === 0)
                         	return '<span class="label label-info">未删除</span>';
                         return '<span class="label label-danger">已删除</span>';
                     }
 			    },{
 			        title: "锁定",
 			        field: "locked",
-			        formatter: function (value, row, index) {
-                        if (value == '0') 
+			        formatter: function (value) {
+                        if (value === 0)
                         	return '<span class="label label-info">未锁定</span>';
                         return '<span class="label label-danger">已锁定</span>';
                     }

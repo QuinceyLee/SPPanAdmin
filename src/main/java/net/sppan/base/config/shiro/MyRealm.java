@@ -51,7 +51,7 @@ public class MyRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		User dbUser = userService.findByUserName(user.getUserName());
 		Set<String> shiroPermissions = new HashSet<>();
-		Set<String> roleSet = new HashSet<String>();
+		Set<String> roleSet = new HashSet<>();
 		Set<Role> roles = dbUser.getRoles();
 		for (Role role : roles) {
 			Set<Resource> resources = role.getResources();

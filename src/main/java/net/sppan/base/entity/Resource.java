@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import net.sppan.base.entity.support.BaseEntity;
 
 /**
@@ -26,15 +28,16 @@ import net.sppan.base.entity.support.BaseEntity;
  */
 @Entity
 @Table(name = "tb_resource")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Resource extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1155648866423123148L;
 
 	/**
 	 * 资源id
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
 
@@ -88,13 +91,13 @@ public class Resource extends BaseEntity {
 	/**
 	 * 创建时间
 	 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date createTime;
 
 	/**
 	 * 更新时间
 	 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date updateTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)

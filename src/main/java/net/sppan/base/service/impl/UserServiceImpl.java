@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sppan.base.common.utils.MD5Utils;
+import net.sppan.base.dao.IRoleDao;
 import net.sppan.base.dao.IUserDao;
 import net.sppan.base.dao.support.IBaseDao;
 import net.sppan.base.entity.Role;
 import net.sppan.base.entity.User;
-import net.sppan.base.service.IRoleService;
 import net.sppan.base.service.IUserService;
 import net.sppan.base.service.support.impl.BaseServiceImpl;
 
@@ -17,7 +17,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
@@ -35,11 +37,11 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 	private IUserDao userDao;
 	
 	@Autowired
-	private IRoleService roleService;
+	private IRoleDao iRoleDao;
 	
 	@Override
 	public IBaseDao<User, Integer> getBaseDao() {
-		return this.userDao;
+		return userDao;
 	}
 
 	@Override
@@ -65,7 +67,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 			user.setCreateTime(new Date());
 			user.setUpdateTime(new Date());
 			user.setDeleteStatus(0);
-			user.setPassword(MD5Utils.md5("111111"));
+			user.setPassword(MD5Utils.md5("admin"));
 			save(user);
 		}
 	}
@@ -73,10 +75,12 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 	
 
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		User user = find(id);
 		Assert.state(!"admin".equals(user.getUserName()),"超级管理员用户不能删除");
 		super.delete(id);
+		userDao.DeleteRelationship(id);
 	}
 
 	@Override
@@ -85,11 +89,11 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 		Assert.notNull(user, "用户不存在");
 		Assert.state(!"admin".equals(user.getUserName()),"超级管理员用户不能修改管理角色");
 		Role role;
-		Set<Role> roles = new HashSet<Role>();
+		Set<Role> roles = new HashSet<>();
 		if(roleIds != null){
 			for (int i = 0; i < roleIds.length; i++) {
 				Integer rid = Integer.parseInt(roleIds[i]);
-				role = roleService.find(rid);
+				role = iRoleDao.findById(rid).get();
 				roles.add(role);
 			}
 		}
@@ -99,8 +103,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements I
 
 	@Override
 	public Page<User> findAllByLike(String searchText, PageRequest pageRequest) {
+		pageRequest.getSort();
 		if(StringUtils.isBlank(searchText)){
-			searchText = "";
+				return userDao.findAll(pageRequest);
 		}
 		return userDao.findAllByNickNameContaining(searchText,pageRequest);
 	}

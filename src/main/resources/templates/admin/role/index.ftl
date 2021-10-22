@@ -88,7 +88,7 @@
 			    //启动分页  
 			    pagination: true,
 			    //每页显示的记录数  
-			    pageSize: 10,
+			    pageSize: 5,
 			    //当前第几页  
 			    pageNumber: 1,
 			    //记录数可选列表  

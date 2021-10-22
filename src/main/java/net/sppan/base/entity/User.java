@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import net.sppan.base.entity.support.BaseEntity;
 
 /**
@@ -28,15 +30,16 @@ import net.sppan.base.entity.support.BaseEntity;
  */
 @Entity
 @Table(name = "tb_user")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class User extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1112312444556123344L;
 
 	/**
 	 * 用户id
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Integer id;
 
@@ -63,7 +66,7 @@ public class User extends BaseEntity {
 	/**
 	 * 出生日期
 	 */
-	@JSONField(format = "yyyy-MM-dd")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd",timezone="GMT+8")
 	private Date birthday;
 
 	/**
@@ -101,13 +104,13 @@ public class User extends BaseEntity {
 	/**
 	 * 创建时间
 	 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date createTime;
 
 	/**
 	 * 更新时间
 	 */
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date updateTime;
 
 	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)

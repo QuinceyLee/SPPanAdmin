@@ -88,7 +88,7 @@
 			    //启动分页  
 			    pagination: true,
 			    //每页显示的记录数  
-			    pageSize: 10,
+			    pageSize: 5,
 			    //当前第几页  
 			    pageNumber: 1,
 			    //记录数可选列表  
@@ -124,12 +124,12 @@
 			    },{
 			        title: "资源类型",
 			        field: "type",
-			        formatter: function(value,row,index){
-			        	if(value == 0)
+			        formatter: function(value){
+			        	if(value === 0)
                     		return '<span class="label label-info">目录</span>';
-                    	else if(value == 1)
+                    	else if(value === 1)
                     		return '<span class="label label-primary">菜单</span>';
-                    	else if(value == 2)
+                    	else if(value === 2)
                     		return '<span class="label label-warning">按钮</span>';
 			        }
 			    },{
@@ -150,7 +150,7 @@
 			        title: "状态",
 			        sortable: true,
 			        field: "isHide",
-                    formatter: function (value, row, index) {
+                    formatter: function (value) {
                     	if(value == 0)
                     		return '<span class="label label-info">显示</span>';
                     	else if(value == 1)
