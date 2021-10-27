@@ -1,8 +1,11 @@
 package dao;
 
 import net.sppan.base.Application;
+import net.sppan.base.dao.IAttackMsgDao;
 import net.sppan.base.dao.IRoleDao;
+import net.sppan.base.entity.AttackedMsg;
 import net.sppan.base.entity.Role;
+import net.sppan.base.service.IAttackedMsgService;
 import net.sppan.base.service.IResourceService;
 import net.sppan.base.service.IRoleService;
 import net.sppan.base.service.IUserService;
@@ -31,9 +34,12 @@ public class Test
     @Resource
     IResourceService iResourceService;
 
+    @Resource
+    IAttackedMsgService iAttackedMsgService;
+
     @org.junit.Test
     public void test(){
-        Page<Role> all = iRoleService.findAll(new PageRequest(0, 2));
-        System.out.println();
+        Page<AttackedMsg> all = iAttackedMsgService.findAll(new PageRequest(0, 2));
+        System.out.println(all.getContent().get(0));
     }
 }
