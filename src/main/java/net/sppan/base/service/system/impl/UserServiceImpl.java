@@ -1,4 +1,4 @@
-package net.sppan.base.service.impl;
+package net.sppan.base.service.system.impl;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,14 +10,13 @@ import net.sppan.base.dao.IUserDao;
 import net.sppan.base.dao.support.IBaseDao;
 import net.sppan.base.entity.Role;
 import net.sppan.base.entity.User;
-import net.sppan.base.service.IUserService;
+import net.sppan.base.service.system.IUserService;
 import net.sppan.base.service.support.impl.BaseServiceImpl;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;

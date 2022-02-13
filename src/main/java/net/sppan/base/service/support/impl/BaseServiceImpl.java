@@ -16,16 +16,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 @Transactional
+
 public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializable> implements IBaseService<T, ID> {
 
-    public abstract IBaseDao<T, ID> getBaseDao();
+
+    public  abstract IBaseDao<T,ID> getBaseDao();
 
     @Override
     public T find(ID id) {
         return getBaseDao().findById(id).get();
     }
 
-    @Override	
+    @Override
     public List<T> findAll() {
         return getBaseDao().findAll();
     }

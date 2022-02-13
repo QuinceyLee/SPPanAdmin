@@ -20,8 +20,8 @@ import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.Role;
 import net.sppan.base.entity.User;
-import net.sppan.base.service.IRoleService;
-import net.sppan.base.service.IUserService;
+import net.sppan.base.service.system.IRoleService;
+import net.sppan.base.service.system.IUserService;
 
 @Controller
 @RequestMapping("/admin/user")

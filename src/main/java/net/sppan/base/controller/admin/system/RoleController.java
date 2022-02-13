@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.Role;
-import net.sppan.base.service.IRoleService;
+import net.sppan.base.service.system.IRoleService;
 
 @Controller
 @RequestMapping("/admin/role")

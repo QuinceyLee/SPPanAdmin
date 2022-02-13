@@ -1,4 +1,4 @@
-package net.sppan.base.service.impl;
+package net.sppan.base.service.system.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,10 +9,8 @@ import net.sppan.base.dao.IRoleDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import net.sppan.base.common.Constats;
@@ -20,7 +18,7 @@ import net.sppan.base.dao.IResourceDao;
 import net.sppan.base.dao.support.IBaseDao;
 import net.sppan.base.entity.Resource;
 import net.sppan.base.entity.Role;
-import net.sppan.base.service.IResourceService;
+import net.sppan.base.service.system.IResourceService;
 import net.sppan.base.service.support.impl.BaseServiceImpl;
 import net.sppan.base.vo.ZtreeView;
 

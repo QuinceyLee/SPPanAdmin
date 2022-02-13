@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.User;
-import net.sppan.base.service.IUserService;
+import net.sppan.base.service.system.IUserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

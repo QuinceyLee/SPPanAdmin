@@ -25,7 +25,7 @@
 </head>
 
 <body class="signin">
-<div align="center" style="color:rgb(5,241,241);font-size: 80px" >智能网关管理系统</div>
+<div align="center" style="color:rgb(5,241,241);font-size: 80px" >智能网络攻防平台</div>
     <div class="signinpanel">
         <div class="row">
             <div class="col-sm-12">

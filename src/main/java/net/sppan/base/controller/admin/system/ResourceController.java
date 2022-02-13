@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.Resource;
-import net.sppan.base.service.IResourceService;
+import net.sppan.base.service.system.IResourceService;
 import net.sppan.base.vo.ZtreeView;
 
 @Controller

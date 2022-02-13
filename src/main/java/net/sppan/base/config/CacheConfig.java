@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+import java.util.Objects;
+
 @Configuration
 //标注启动了缓存
 @EnableCaching
@@ -17,7 +19,7 @@ public class CacheConfig {
   */
  @Bean
  public EhCacheCacheManager ehCacheCacheManager(EhCacheManagerFactoryBean bean){
-     return new EhCacheCacheManager (bean.getObject ());
+     return new EhCacheCacheManager (Objects.requireNonNull(bean.getObject()));
  }
 
  /**

@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Import;
 
-import net.sppan.base.service.IResourceService;
+import net.sppan.base.service.system.IResourceService;
 
 @Configuration
 @Import(ShiroManager.class)
@@ -63,7 +63,7 @@ public class ShiroConfig {
 		shiroFilter.setLoginUrl("/admin/login");
 		shiroFilter.setSuccessUrl("/admin/index");
 		shiroFilter.setUnauthorizedUrl("/previlige/no");
-		Map<String, String> filterChainDefinitionMap = new HashMap<String, String>();
+		Map<String, String> filterChainDefinitionMap = new HashMap<>();
 		filterChainDefinitionMap.put("/assets/**", "anon");
 		
 		filterChainDefinitionMap.put("/admin/login", "anon");

@@ -2,7 +2,7 @@ package net.sppan.base.controller.admin.monitor;
 
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.AttackedMsg;
-import net.sppan.base.service.IAttackedMsgService;
+import net.sppan.base.service.data.IAttackedMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

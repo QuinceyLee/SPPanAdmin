@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<repositories>
 		<repository>
-			<id>nexus-aliyun</id>
+			<id>nexugs-aliyun</id>
 			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 		</repository>
 	</repositories>
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.2.4</version>
+			<version>1.2.8</version>
 		</dependency>
 
 		<dependency>
@@ -117,7 +117,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.76</version>
+			<version>1.2.79</version>
 		</dependency>
 
 		<dependency>
@@ -129,8 +129,16 @@
 		    <groupId>org.springframework.boot</groupId>  
 		    <artifactId>spring-boot-devtools</artifactId>  
 		    <optional>true</optional><!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->  
-		</dependency>  
+		</dependency>
+
+		<dependency>
+			<groupId>tech.tablesaw</groupId>
+			<artifactId>tablesaw-core</artifactId>
+			<version>0.42.0</version>
+		</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>

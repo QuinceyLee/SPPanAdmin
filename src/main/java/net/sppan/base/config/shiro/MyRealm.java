@@ -7,7 +7,7 @@ import net.sppan.base.common.utils.MD5Utils;
 import net.sppan.base.entity.Resource;
 import net.sppan.base.entity.Role;
 import net.sppan.base.entity.User;
-import net.sppan.base.service.IUserService;
+import net.sppan.base.service.system.IUserService;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

@@ -1,4 +1,4 @@
-package net.sppan.base.service;
+package net.sppan.base.service.system;
 
 import java.util.List;
 

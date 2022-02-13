@@ -85,7 +85,49 @@
                         <ul class="nav nav-second-level">
                             <@shiro.hasPermission name="system:user:index">
                                 <li>
-                                    <a class="J_menuItem" href="${ctx!}/admin/honeyed/index">蜜罐分析</a>
+                                    <a class="J_menuItem" href="${ctx!}/admin/data/index">设备数据</a>
+                                </li>
+                            </@shiro.hasPermission>
+                        </ul>
+                        <ul class="nav nav-second-level">
+                            <@shiro.hasPermission name="system:user:index">
+                                <li>
+                                    <a class="J_menuItem" href="${ctx!}/admin/data/index">设备控制</a>
+                                </li>
+                            </@shiro.hasPermission>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-cog"></i>
+                            <span class="nav-label">报警查看</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <@shiro.hasPermission name="system:user:index">
+                                <li>
+                                    <a class="J_menuItem" href="${ctx!}/admin/data/index">报警信息</a>
+                                </li>
+                            </@shiro.hasPermission>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-cog"></i>
+                            <span class="nav-label">流量分析</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <@shiro.hasPermission name="system:user:index">
+                                <li>
+                                    <a class="J_menuItem" href="${ctx!}/admin/honeyed/index">流量信息</a>
+                                </li>
+                            </@shiro.hasPermission>
+                        </ul>
+                        <ul class="nav nav-second-level">
+                            <@shiro.hasPermission name="system:user:index">
+                                <li>
+                                    <a class="J_menuItem" href="${ctx!}/admin/data/index">异常流量</a>
                                 </li>
                             </@shiro.hasPermission>
                         </ul>
